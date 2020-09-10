@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  fluentd:
+    build: .
+    ports:
+      - "6379"
+    volumes:
+      - ./config:/fluentd/etc
+    environment:
+      ELASTIC_HOST: fake
+      ELASTIC_API_KEY: "XYX=="
+  fake:
+    image: subfuzion/netcat
+    command: -vl 9200
